@@ -1,0 +1,28 @@
+body { 
+    background-color: slateblue;
+}
+
+#canvas-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+}
+
+#canvas {
+    background-color: white;
+}
+
+#btns-container {
+    margin-top: 2rem;
+}
+
+#predict-btn {
+    margin-right: 2rem;
+}
+
+.btn {
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+}
