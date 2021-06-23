@@ -56,7 +56,7 @@ canvas.addEventListener('mousemove', e => {
     let [cur_x, cur_y] = [e.clientX-width_offset, e.clientY-height_offset]
     if (mouse_down) {
         ctx.beginPath()
-        ctx.lineWidth = 5
+        ctx.lineWidth = 20
         ctx.strokeStyle = 'white'
         ctx.moveTo(prev_x, prev_y)
         ctx.lineTo(cur_x, cur_y)
@@ -68,7 +68,9 @@ canvas.addEventListener('mousemove', e => {
 })
 
 clear_btn.addEventListener('click', () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'black'
+    ctx.rect(0, 0, canvas.width, canvas.height)
+    ctx.fill()
 })
 
 predict_btn.addEventListener('click', async () => {
@@ -76,14 +78,14 @@ predict_btn.addEventListener('click', async () => {
     let reader = new FileReader()
     canvas.toBlob(blob => {
         // When reader is done reading, then we can proceed
-        reader.onload = async (e) => {
+        reader.onload = async () => {
             // We need to split since the part before the ',' is the Data-URL declaration
             // which isn't part of the Base64-encoded string
             // See the docs for more info (https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL)
             let img_data = reader.result.split(',')[1]
             
             // Send the data over to the server as a JSON
-            let data = JSON.stringify({image :img_data})
+            let data = JSON.stringify({image : img_data})
             let URL = 'http://localhost:3000/predict'
             let params = {
                 method : 'POST',

@@ -3,9 +3,11 @@ import numpy as np
 import sys
 import os
 from tensorflow import keras
-from tensorflow.keras.datasets import mnist
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Reshape
 from PIL import Image
+
+# Only need the following 2 for initially training the model 
+# from tensorflow.keras.datasets import mnist
+# from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Reshape
 
 if (os.path.exists('CNN_model')):
     # If the model exists load it in
@@ -14,13 +16,15 @@ if (os.path.exists('CNN_model')):
     # Get the path to image being classified
     path = sys.argv[1]
 
-    # Load the img as grayscale and dump into NP array
-    img = Image.open(path).convert('L')
-    m = np.array(img)
+    with Image.open(path) as img:
+        # Load the img, resize it, convert to grayscale, and dump into NP array
+        img = img.resize((28,28)).convert('L')
+        m = np.array(img)
+        img.save('../imgs/resized_image.png')
 
-    # Make the prediction
-    label = np.argmax(model.predict(m.reshape(1,28,28,1)))
-    print(label)
+        # Make the prediction
+        label = np.argmax(model.predict(m.reshape(1,28,28,1)))
+        print(label)
 else:
     # Otherwise train a model
     print('Creating a new CNN model...')
