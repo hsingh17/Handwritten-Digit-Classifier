@@ -2,6 +2,10 @@ body {
     background-color: slateblue;
 }
 
+p {
+    font: 1.5rem "Lucida Console";
+}
+
 #canvas-container {
     height: 100vh;
     display: flex;

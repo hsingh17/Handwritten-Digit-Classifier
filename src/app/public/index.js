@@ -96,12 +96,19 @@ predict_btn.addEventListener('click', async () => {
                 },
                 body : data
             }
+            
+            // Turn off button for the duration of POST request
+            predict_btn.disabled = true
 
             // Fetch returns a promise and so .json(), therefore, we must await both
             // https://dmitripavlutin.com/javascript-fetch-async-await/
             const response = await fetch(URL, params)
             const value = await response.json()
             label_span.textContent = value.label
+            
+            // Turn the button back on
+            predict_btn.disabled = false
+
         }
         
         // Read from the blob
