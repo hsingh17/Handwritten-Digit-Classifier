@@ -1,7 +1,6 @@
 const express = require('express')
 const child_process = require('child_process')
 const fs = require('fs')
-const { cwd } = require('process')
 const app = express()
 
 // Setup the public folder to serve static files
@@ -22,7 +21,7 @@ app.post('/predict', (req, res) => {
         cwd : '../model/'
     })
 
-    console.log(python.stdout.toString())
+    res.json({label : python.stdout.toString()})
 })
 
 // Setup the server to listen to port

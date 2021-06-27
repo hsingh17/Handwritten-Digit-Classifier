@@ -2,6 +2,7 @@
 // <----------------------- CONSTANTS ----------------------->
 const body = document.getElementsByTagName('body')[0],
     canvas = document.getElementById('canvas'),
+    label_span = document.getElementById('label'),
     clear_btn = document.getElementById('clear-btn'),
     predict_btn = document.getElementById('predict-btn'),
     btn_container_height = document.getElementById('btns-container').offsetHeight,
@@ -71,6 +72,7 @@ clear_btn.addEventListener('click', () => {
     ctx.fillStyle = 'black'
     ctx.rect(0, 0, canvas.width, canvas.height)
     ctx.fill()
+    label_span.textContent = ''
 })
 
 predict_btn.addEventListener('click', async () => {
@@ -95,7 +97,11 @@ predict_btn.addEventListener('click', async () => {
                 body : data
             }
 
+            // Fetch returns a promise and so .json(), therefore, we must await both
+            // https://dmitripavlutin.com/javascript-fetch-async-await/
             const response = await fetch(URL, params)
+            const value = await response.json()
+            label_span.textContent = value.label
         }
         
         // Read from the blob

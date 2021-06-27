@@ -1,7 +1,10 @@
+# Need this otherwise it loads up all the warnings related to Tensorflow and Keras
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+
 import tensorflow as tf
 import numpy as np
 import sys
-import os
 from tensorflow import keras
 from PIL import Image
 
@@ -24,7 +27,7 @@ if (os.path.exists('CNN_model')):
 
         # Make the prediction
         label = np.argmax(model.predict(m.reshape(1,28,28,1)))
-        print(label)
+        print(label, end='', flush=True)
 else:
     # Otherwise train a model
     print('Creating a new CNN model...')
