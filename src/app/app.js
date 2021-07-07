@@ -1,6 +1,7 @@
 const express = require('express')
 const child_process = require('child_process')
 const fs = require('fs')
+const crypto = require("crypto")
 const app = express()
 
 // Setup the public folder to serve static files
@@ -13,15 +14,28 @@ app.use(express.json())
 app.post('/predict', (req, res) => {
     let encoded_img = req.body.image
 
+    // Generate a unique ID for this request
+    const id = crypto.randomBytes(12).toString('hex')
+    const path = `../imgs/${id}.png`
+
     // Save the image
-    fs.writeFileSync('../imgs/image.png', encoded_img, {encoding : 'base64'})
+    fs.writeFile(path, encoded_img, {encoding : 'base64'}, (err) => {
+        if (err) throw err
 
-    // Run the Python script to predict on the image
-    const python = child_process.spawnSync('python3',['CNN.py', '../imgs/image.png'], {
-        cwd : '../model/'
+        // Run the Python script to predict on the image
+        const python = child_process.spawn('python3',['CNN.py', path], {cwd : '../model/'})
+        
+        // Event listener for data to stdout
+        python.stdout.on('data', (data) => {
+            fs.unlink(path, (err) => {
+                if (err) throw err
+            })            
+            res.json({label : data.toString()})
+        })
     })
+   
 
-    res.json({label : python.stdout.toString()})
+   
 })
 
 // Setup the server to listen to port
