@@ -1,5 +1,4 @@
 
-console.log('h')
 // <----------------------- CONSTANTS ----------------------->
 const body = document.getElementsByTagName('body')[0],
     canvas = document.getElementById('canvas'),
@@ -89,7 +88,7 @@ predict_btn.addEventListener('click', async () => {
             
             // Send the data over to the server as a JSON
             let data = JSON.stringify({image : img_data})
-            let URL = 'http://localhost:3000/predict'
+            let URL = '/predict'
             let params = {
                 method : 'POST',
                 headers : {
