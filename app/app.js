@@ -17,14 +17,14 @@ app.post('/predict', (req, res) => {
 
     // Generate a unique ID for this request
     const id = crypto.randomBytes(12).toString('hex')
-    const path = `../imgs/${id}.png`
+    const path = `${__dirname}/../imgs/${id}.png`
 
     // Save the image
     fs.writeFile(path, encoded_img, {encoding : 'base64'}, (err) => {
         if (err) throw err
 
         // Run the Python script to predict on the image
-        const python = child_process.spawn('python3',['CNN.py', path], {cwd : '../model/'})
+        const python = child_process.spawn('python3',['CNN.py', path], {cwd : `${__dirname}/../model/`})
         
         // Event listener for data to stdout
         python.stdout.on('data', (data) => {
