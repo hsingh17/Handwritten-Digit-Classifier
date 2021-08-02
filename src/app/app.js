@@ -3,6 +3,7 @@ const child_process = require('child_process')
 const fs = require('fs')
 const crypto = require("crypto")
 const app = express()
+const PORT = process.env.PORT || 3000
 
 // Setup the public folder to serve static files
 app.use(express.static('public'))
