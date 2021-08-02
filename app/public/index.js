@@ -1,4 +1,5 @@
 
+console.log('h')
 // <----------------------- CONSTANTS ----------------------->
 const body = document.getElementsByTagName('body')[0],
     canvas = document.getElementById('canvas'),
