@@ -6,7 +6,7 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 // Setup the public folder to serve static files
-app.use(express.static('public'))
+app.use(express.static('./public'))
 
 // Set up the middleware to parse request's with JSON body
 app.use(express.json())
