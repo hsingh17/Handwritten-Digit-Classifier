@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start" : "node ./src/app.js",
-    "watch": "nodemon ./src/app.js",
+    "start" : "node ./src/app/app.js",
+    "watch": "nodemon ./src/app/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Harjot Singh",
