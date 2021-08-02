@@ -18,7 +18,6 @@ app.post('/predict', (req, res) => {
     // Generate a unique ID for this request
     const id = crypto.randomBytes(12).toString('hex')
     const path = `${__dirname}/../imgs/${id}.png`
-
     // Save the image
     fs.writeFile(path, encoded_img, {encoding : 'base64'}, (err) => {
         if (err) throw err
