@@ -40,6 +40,6 @@ app.post('/predict', (req, res) => {
 })
 
 // Setup the server to listen to port
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('Server started...')
 })
