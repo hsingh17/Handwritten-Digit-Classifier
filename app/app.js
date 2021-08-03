@@ -14,7 +14,7 @@ app.use(express.json())
 // POST /predict makes a prediction on the model and returns the prediction to client
 app.post('/predict', (req, res) => {
     let encoded_img = req.body.image
-
+    console.log('hi')
     // Generate a unique ID for this request
     const id = crypto.randomBytes(12).toString('hex')
     const path = `${__dirname}/../imgs/${id}.png`
