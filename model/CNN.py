@@ -11,7 +11,7 @@ from PIL import Image
 # Only need the following 2 for initially training the model 
 # from tensorflow.keras.datasets import mnist
 # from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Reshape
-
+print('t')
 if (os.path.exists('CNN_model')):
     # If the model exists load it in
     model = keras.models.load_model('CNN_model')
