@@ -13,4 +13,5 @@ I developed a small web app that classifies digits that are drawn on the canvas.
 
 ## Heroku
 Project is hosted on Heroku, which can be found [here](https://handwritten-digit-classifier.herokuapp.com/).
+
 *Project by Harjot Singh*
