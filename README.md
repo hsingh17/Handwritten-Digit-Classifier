@@ -11,7 +11,7 @@ I developed a small web app that classifies digits that are drawn on the canvas.
 3. Python  
     - Design the CNN and makes predictions on new input.
 
-## Heroku
-Project is hosted on Heroku, which can be found [here](https://handwritten-digit-classifier.herokuapp.com/).
+## Project hosting
+Project is hosted on an AWS EC2 instance, which can be found [here](http://204.236.145.239:3000/).
 
 *Project by Harjot Singh*
